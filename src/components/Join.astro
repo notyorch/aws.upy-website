@@ -19,13 +19,14 @@
     </p>
 
     <div class="mt-10 flex flex-col justify-center gap-5 sm:flex-row">
-      <a
-        href="#"
-        class="brut brut-hover brut-press inline-flex items-center justify-center rounded-xl bg-mint px-7 py-4 font-display text-base font-bold text-ink-deep"
+      <button
+        id="join-form-btn"
+        type="button"
+        class="brut brut-hover brut-press inline-flex cursor-pointer items-center justify-center rounded-xl bg-mint px-7 py-4 font-display text-base font-bold text-ink-deep"
         style="--brut-line: #10151b; --brut-shadow: #ad5cff;"
       >
         Llenar formulario de registro
-      </a>
+      </button>
       <a
         href="https://linktr.ee/aws.upy"
         target="_blank"
@@ -37,4 +38,89 @@
       </a>
     </div>
   </div>
+
+  <div
+    id="join-soon-modal"
+    class="fixed inset-0 z-[100] hidden items-center justify-center p-4"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="join-soon-title"
+    aria-hidden="true"
+  >
+    <button
+      type="button"
+      class="absolute inset-0 bg-ink-deep/80 backdrop-blur-sm"
+      data-join-modal-close
+      aria-label="Cerrar"
+    ></button>
+
+    <div
+      class="brut relative z-10 w-full max-w-md rounded-2xl bg-ink font-mono text-sm text-left shadow-2xl"
+      style="--brut-line: #161d26; --brut-shadow: #00e582;"
+    >
+      <div class="flex items-center justify-between gap-2 border-b-2 border-paper/15 px-4 py-3">
+        <div class="flex items-center gap-2">
+          <span class="h-3 w-3 rounded-full bg-bubble"></span>
+          <span class="h-3 w-3 rounded-full bg-sunset"></span>
+          <span class="h-3 w-3 rounded-full bg-mint"></span>
+          <span class="ml-2 text-xs text-fog">registro@upy: ~/aws-sbg</span>
+        </div>
+        <button
+          type="button"
+          class="rounded px-2 py-0.5 text-fog transition hover:bg-ink-raise hover:text-paper"
+          data-join-modal-close
+          aria-label="Cerrar"
+        >
+          ✕
+        </button>
+      </div>
+      <div class="space-y-3 px-5 py-6 leading-relaxed">
+        <p id="join-soon-title">
+          <span class="text-mint">$</span> <span class="text-paper">aws sbg register --campus upy</span>
+        </p>
+        <p class="text-fog">Verificando inscripciones...</p>
+        <p>
+          <span class="text-sunset">!</span>{' '}
+          <span class="text-mint">Próximamente se abrirán las inscripciones al club.</span>
+        </p>
+        <p class="pt-1 text-fog">
+          <span class="text-mint">$</span> <span class="cursor-blink text-paper">_</span>
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
+
+<script>
+  const joinBtn = document.getElementById('join-form-btn');
+  const joinModal = document.getElementById('join-soon-modal');
+
+  const openJoinModal = () => {
+    if (!joinModal) return;
+    joinModal.classList.remove('hidden');
+    joinModal.classList.add('flex');
+    joinModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeJoinModal = () => {
+    if (!joinModal) return;
+    joinModal.classList.add('hidden');
+    joinModal.classList.remove('flex');
+    joinModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    joinBtn?.focus();
+  };
+
+  joinBtn?.addEventListener('click', openJoinModal);
+
+  joinModal?.querySelectorAll('[data-join-modal-close]').forEach((el) => {
+    el.addEventListener('click', closeJoinModal);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && joinModal && !joinModal.classList.contains('hidden')) {
+      closeJoinModal();
+    }
+  });
+</script>

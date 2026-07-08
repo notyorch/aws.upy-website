@@ -1,8 +1,6 @@
 <!--
   Correo: Invitación Kickoff 2026
   Asunto sugerido: 🚀 Kickoff AWS Student Builder Group UPY — 9 de julio
-
-  Antes de enviar, reemplaza {{SITE_URL}} con la URL pública del sitio.
 -->
 <!DOCTYPE html>
 <html lang="es">
@@ -12,6 +10,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Kickoff AWS SBG UPY 2026</title>
   <style>
+    /* Mismas fuentes que src/styles/global.css (S3); Arial/Helvetica como fallback de email */
     @font-face {
       font-family: 'Amazon Ember';
       src: url('https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_Rg.ttf') format('truetype');
@@ -30,11 +29,17 @@
       font-weight: 300;
       font-style: normal;
     }
+    @font-face {
+      font-family: 'Amazon Ember Display';
+      src: url('https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_Bd.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+    }
     body, table, td, p, a, li {
       font-family: 'Amazon Ember', Arial, Helvetica, sans-serif;
     }
     h1, h2 {
-      font-family: 'Amazon Ember Display', Arial, Helvetica, sans-serif;
+      font-family: 'Amazon Ember Display', ui-sans-serif, system-ui, Arial, Helvetica, sans-serif;
       font-weight: 300;
     }
     @media only screen and (max-width: 620px) {
@@ -55,24 +60,6 @@
     <tr>
       <td align="center" style="padding:32px 16px;">
         <table role="presentation" class="wrapper" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
-
-          <!-- Header -->
-          <tr>
-            <td class="px" style="padding:0 32px 24px;text-align:center;">
-              <a href="{{SITE_URL}}" style="text-decoration:none;">
-                <img
-                  src="{{SITE_URL}}/brand/logo.svg"
-                  alt="AWS Student Builder Group UPY"
-                  width="72"
-                  height="72"
-                  style="display:block;margin:0 auto;border:0;outline:none;"
-                />
-              </a>
-              <p style="margin:12px 0 0;font-size:13px;font-weight:700;letter-spacing:0.04em;color:#C4B5E0;text-transform:uppercase;">
-                AWS Student Builder Group UPY
-              </p>
-            </td>
-          </tr>
 
           <!-- Hero image -->
           <tr>

@@ -8,25 +8,34 @@ const tickerItems = [
 ];
 ---
 
-<section
-  class="relative overflow-hidden border-b-2 border-ink/10 bg-white px-6 pb-0 pt-16 sm:pt-24"
-  style="background-image: radial-gradient(rgba(22, 29, 38, 0.07) 1.5px, transparent 1.5px); background-size: 26px 26px;"
->
-  <div class="mx-auto grid max-w-6xl items-center gap-10 pb-20 sm:gap-12 sm:pb-28 lg:grid-cols-[auto_1.15fr_1fr]">
-    <div class="flex justify-center lg:justify-start">
-      <img
-        src="/brand/logo.svg"
-        alt="AWS Student Builder Group UPY"
-        class="h-36 w-36 object-contain sm:h-44 sm:w-44 lg:h-52 lg:w-52"
-      />
-    </div>
+<section id="hero" class="hero-bg relative overflow-hidden border-b-2 border-paper/15 px-6 pb-0 pt-16 sm:pt-24">
+  <div class="hero-grid" aria-hidden="true"></div>
 
-    <div>
-      <p class="font-mono text-xs text-ink/50 sm:text-sm">
+  <img
+    src="/vectors/bolt-blue.svg"
+    alt=""
+    class="sbg-vector sbg-vector--a z-[2] right-[3%] top-16 h-14 w-14 sm:right-[5%] sm:top-20 sm:h-20 sm:w-20"
+  />
+  <img
+    src="/vectors/trophy-amber.svg"
+    alt=""
+    class="sbg-vector sbg-vector--b z-[2] bottom-14 left-[5%] hidden h-16 w-16 md:block lg:bottom-16 lg:h-20 lg:w-20"
+  />
+  <img
+    src="/vectors/key-amber.svg"
+    alt=""
+    class="sbg-vector sbg-vector--a z-[2] bottom-40 right-[6%] hidden h-14 w-14 lg:block lg:h-16 lg:w-16"
+  />
+
+  <div
+    class="relative z-10 mx-auto grid max-w-6xl items-center gap-10 pb-20 sm:gap-12 sm:pb-28 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-14 xl:gap-16"
+  >
+    <div class="min-w-0">
+      <p class="font-mono text-xs text-fog sm:text-sm">
         <span class="text-mint">$</span> cd ~/universidad-politecnica-yucatan
       </p>
 
-      <h1 class="font-display mt-6 text-5xl font-extrabold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl">
+      <h1 class="font-display mt-6 text-5xl font-extrabold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-7xl xl:text-8xl">
         <span class="block text-cloud">Aprende.</span>
         <span class="block text-mint">Construye.</span>
         <span class="block">
@@ -34,8 +43,8 @@ const tickerItems = [
         </span>
       </h1>
 
-      <p class="mt-8 max-w-xl text-lg text-ink/70 sm:text-xl">
-        Somos el <strong class="font-bold text-ink">AWS Student Builder Group</strong> de la UPY:
+      <p class="mt-8 max-w-xl text-lg text-fog sm:text-xl">
+        Somos el <strong class="font-bold text-paper">AWS Student Builder Group</strong> de la UPY:
         una comunidad estudiantil que aprende, construye y crece junta usando la nube de Amazon Web
         Services.
       </p>
@@ -53,8 +62,8 @@ const tickerItems = [
         </a>
         <a
           href="/eventos"
-          class="brut brut-hover brut-press inline-flex items-center justify-center rounded-xl bg-ink px-7 py-4 font-display text-base font-bold text-paper"
-          style="--brut-line: #161d26; --brut-shadow: #42b4ff;"
+          class="brut brut-hover brut-press inline-flex items-center justify-center rounded-xl bg-ink-raise px-7 py-4 font-display text-base font-bold text-paper"
+          style="--brut-line: #f2f6f9; --brut-shadow: #42b4ff;"
         >
           Ver próximos eventos
         </a>
@@ -63,7 +72,7 @@ const tickerItems = [
 
     <!-- Terminal de la comunidad -->
     <div
-      class="brut brut-hover rotate-1 rounded-2xl bg-ink font-mono text-sm"
+      class="brut brut-hover w-full max-w-md rotate-1 justify-self-center rounded-2xl bg-ink font-mono text-sm lg:max-w-none lg:justify-self-end"
       style="--brut-line: #161d26; --brut-shadow: #ff9900;"
     >
       <div class="flex items-center gap-2 border-b-2 border-paper/15 px-4 py-3">
@@ -85,7 +94,7 @@ const tickerItems = [
   </div>
 
   <!-- Ticker marquee -->
-  <div class="marquee -mx-6 border-t-2 border-ink/10 bg-ink py-4" aria-hidden="true">
+  <div class="marquee relative z-10 -mx-6 border-t-2 border-paper/15 bg-ink py-4" aria-hidden="true">
     <div class="marquee-track">
       {
         [0, 1].map(() => (
@@ -102,3 +111,22 @@ const tickerItems = [
     </div>
   </div>
 </section>
+
+<script>
+  const hero = document.getElementById('hero');
+  const grid = hero?.querySelector('.hero-grid');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (hero && grid && !reducedMotion) {
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      grid.style.setProperty('--gx', `${e.clientX - rect.left}px`);
+      grid.style.setProperty('--gy', `${e.clientY - rect.top}px`);
+      hero.classList.add('hero-grid--active');
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      hero.classList.remove('hero-grid--active');
+    });
+  }
+</script>
