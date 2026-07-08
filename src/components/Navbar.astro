@@ -1,0 +1,100 @@
+---
+const links = [
+  { href: '/#sobre-nosotros', label: 'sobre-nosotros', color: 'text-mint' },
+  { href: '/#que-hacemos', label: 'que-hacemos', color: 'text-cloud' },
+  { href: '/eventos', label: 'eventos', color: 'text-grape' },
+  { href: '/#equipo', label: 'equipo', color: 'text-sunset' },
+  { href: '/#aliados', label: 'aliados', color: 'text-bubble' },
+];
+---
+
+<header class="sticky top-0 z-50 border-b-2 border-paper/15 bg-ink-deep/90 backdrop-blur">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+    <a href="/" class="flex items-center gap-3">
+      <img
+        src="/brand/logo.svg"
+        alt="AWS Student Builder Group UPY"
+        class="h-10 w-10 object-contain"
+      />
+      <span class="hidden font-mono text-sm font-bold tracking-tight sm:inline">
+        <span class="text-fog">~/</span>aws-sbg<span class="text-mint">@upy</span>
+      </span>
+    </a>
+
+    <ul class="hidden items-center gap-6 font-mono text-xs md:flex">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href} class="group text-fog transition hover:text-paper">
+              <span class={`${link.color} opacity-0 transition group-hover:opacity-100`}>[</span
+              >{link.label}<span class={`${link.color} opacity-0 transition group-hover:opacity-100`}>]</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="hidden md:block">
+      <a
+        href="/#unete"
+        class="brut brut-hover brut-press inline-block rounded-lg bg-mint px-4 py-2 font-mono text-xs font-bold text-ink-deep"
+        style="--brut-line: #10151b; --brut-shadow: #ad5cff;"
+      >
+        ./unete.sh
+      </a>
+    </div>
+
+    <button
+      id="menu-toggle"
+      type="button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      class="brut brut-press flex h-10 w-10 items-center justify-center rounded-lg bg-ink text-paper md:hidden"
+      style="--brut-line: #f2f6f9; --brut-shadow: #42b4ff;"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+
+  <ul id="mobile-menu" class="hidden flex-col gap-1 border-t-2 border-paper/15 bg-ink-deep px-6 py-4 font-mono text-sm md:hidden">
+    {
+      links.map((link) => (
+        <li>
+          <a href={link.href} class="block rounded-lg px-3 py-2 text-fog transition hover:bg-ink hover:text-paper">
+            <span class={link.color}>&gt;</span> {link.label}
+          </a>
+        </li>
+      ))
+    }
+    <li class="mt-3">
+      <a
+        href="/#unete"
+        class="brut brut-press block rounded-lg bg-mint px-4 py-3 text-center font-bold text-ink-deep"
+        style="--brut-line: #10151b; --brut-shadow: #ad5cff;"
+      >
+        ./unete.sh
+      </a>
+    </li>
+  </ul>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('flex');
+    menu?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+
+  menu?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+      toggle?.setAttribute('aria-expanded', 'false');
+    })
+  );
+</script>

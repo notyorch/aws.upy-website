@@ -1,0 +1,40 @@
+{
+  "slug": "mi-nuevo-evento",
+  "date": "2026-08-15",
+  "title": "Título corto para tarjetas y SEO",
+  "heroTitle": "Título largo que aparece en el hero del evento",
+  "subtitle": "Frase destacada bajo el título",
+  "description": "Resumen de 1-2 líneas para la miniatura en el grid de eventos.",
+  "thumbnail": "https://ejemplo.com/imagen-1x1.png",
+  "meetupUrl": "https://www.meetup.com/aws-sbg-at-universidad-politecnica-de-yucatan/events/XXXXXXXX/",
+  "calendarIcs": "/events/mi-nuevo-evento.ics",
+  "location": "Universidad Politécnica de Yucatán UPY",
+  "locationUrl": "https://www.upy.edu.mx/",
+  "locationRegion": "Yucatán",
+  "venue": "SUM – Universidad Politécnica de Yucatán",
+  "time": "10:00 a.m.",
+  "timeRange": "10:00 – 12:00",
+  "level": "Principiante",
+  "sections": [
+    {
+      "emoji": "☁️",
+      "title": "Nombre de la sección",
+      "items": [
+        "Primer punto de la sección.",
+        "Segundo punto de la sección."
+      ]
+    }
+  ],
+  "agenda": [
+    "Bienvenida",
+    "Actividad principal",
+    "Cierre"
+  ],
+  "whyAttend": [
+    "Razón para asistir 1",
+    "Razón para asistir 2"
+  ],
+  "note": "Mensaje opcional sobre cupo o registro.",
+  "terms": "Texto legal opcional.",
+  "published": true
+}

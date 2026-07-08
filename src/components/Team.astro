@@ -1,0 +1,61 @@
+---
+const palette = [
+  { color: '#00e582', text: 'text-mint' },
+  { color: '#42b4ff', text: 'text-cloud' },
+  { color: '#ad5cff', text: 'text-grape' },
+  { color: '#ff9900', text: 'text-sunset' },
+  { color: '#ff57e9', text: 'text-bubble' },
+];
+
+const team = [
+  { name: 'Isis Edith Arana', role: 'Student Builder Group', photo: '/team/isis.png' },
+  { name: 'María José León', role: 'Coordinator', initials: 'ML' },
+  { name: 'Jorge Enrique Vargas', role: 'Technical Lead & Designer', photo: '/team/jorge.png' },
+  { name: 'José Luis Rejón', role: 'Knowledge Manager', photo: '/team/jose.jpg' },
+  { name: 'César Antonio Pinto', role: 'Content Lead', photo: '/team/cesar.png' },
+  { name: 'Angel Isabella Morales', role: 'Operations & Events Lead', photo: '/team/angel.png' },
+];
+---
+
+<section id="equipo" class="bg-grid relative overflow-hidden border-t-2 border-paper/15 bg-ink px-6 py-24">
+  <img src="/vectors/teams-mint.svg" alt="" class="sbg-vector sbg-vector--a left-[4%] bottom-10 h-14 w-14 sm:h-20 sm:w-20" />
+  <img src="/vectors/bracket-smile-white.svg" alt="" class="sbg-vector sbg-vector--b right-[5%] top-12 hidden h-16 w-16 lg:block" />
+
+  <div class="mx-auto max-w-6xl">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <p class="font-mono text-sm text-sunset">// equipo</p>
+      <h2 class="font-display mt-4 text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">
+        Quiénes lo hacen <span class="text-sunset">posible</span>
+      </h2>
+    </div>
+
+    <div class="mt-16 grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-3">
+      {
+        team.map((member, index) => {
+          const swatch = palette[index % palette.length];
+          return (
+            <div
+              class={`brut brut-hover reveal rounded-2xl bg-ink-deep p-5 text-center sm:p-6 ${index % 2 === 0 ? '-rotate-1' : 'rotate-1'}`}
+              style={`--brut-line: #f2f6f9; --brut-shadow: ${swatch.color};`}
+            >
+              <div
+                class="mx-auto h-20 w-20 overflow-hidden rounded-full border-2 sm:h-24 sm:w-24"
+                style={`border-color: ${swatch.color};`}
+              >
+                {member.photo ? (
+                  <img src={member.photo} alt={member.name} class="h-full w-full object-cover" />
+                ) : (
+                  <span class={`${swatch.text} flex h-full w-full items-center justify-center bg-ink font-display text-xl font-extrabold`}>
+                    {member.initials}
+                  </span>
+                )}
+              </div>
+              <p class="mt-4 text-sm font-bold text-paper sm:text-base">{member.name}</p>
+              <p class={`${swatch.text} mt-1 font-mono text-[11px] sm:text-xs`}>[ {member.role} ]</p>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

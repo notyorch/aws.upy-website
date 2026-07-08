@@ -1,0 +1,44 @@
+---
+const year = new Date().getFullYear();
+
+const socials = [
+  { label: 'instagram', href: 'https://www.instagram.com/aws.upy/', color: 'text-bubble' },
+  { label: 'linkedin', href: 'https://www.linkedin.com/company/aws-cloud-club-upy/posts/?feedView=all', color: 'text-cloud' },
+  { label: 'youtube', href: 'https://www.youtube.com/@AWSCloudClubUPY', color: 'text-sunset' },
+  { label: 'meetup', href: 'https://www.meetup.com/aws-sbg-at-universidad-politecnica-de-yucatan/', color: 'text-grape' },
+  { label: 'linktree', href: 'https://linktr.ee/aws.upy', color: 'text-mint' },
+];
+---
+
+<footer class="border-t-2 border-paper/15 bg-ink px-6 py-12">
+  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-8 sm:flex-row">
+    <a href="/" class="flex items-center gap-3">
+      <img src="/brand/logo.svg" alt="AWS Student Builder Group UPY" class="h-9 w-9 object-contain" />
+      <span class="font-mono text-sm font-bold">
+        <span class="text-fog">~/</span>aws-sbg<span class="text-mint">@upy</span>
+      </span>
+    </a>
+
+    <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-xs">
+      {
+        socials.map((social) => (
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group text-fog transition hover:text-paper"
+          >
+            <span class={`${social.color} opacity-60 transition group-hover:opacity-100`}>[</span
+            >{social.label}<span class={`${social.color} opacity-60 transition group-hover:opacity-100`}>]</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <p class="mx-auto mt-10 max-w-6xl text-center font-mono text-[11px] leading-relaxed text-fog sm:text-left">
+    <span class="text-mint">$</span> echo "© {year} AWS Student Builder Group UPY · Universidad
+    Politécnica de Yucatán. No afiliado oficialmente a Amazon Web Services, Inc."
+    <span class="text-cloud">(:</span>
+  </p>
+</footer>

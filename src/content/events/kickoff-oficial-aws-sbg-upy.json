@@ -1,0 +1,53 @@
+{
+  "slug": "kickoff-oficial-aws-sbg-upy",
+  "date": "2026-07-09",
+  "title": "AWS Student Builder Group UPY – Kickoff 2026",
+  "heroTitle": "Kickoff Oficial del AWS Student Builder Group at UPY!",
+  "subtitle": "¡Comienza tu camino hacia la nube con AWS!",
+  "description": "Evento inaugural del AWS Student Builder Group UPY: conoce la comunidad, aprende los fundamentos de AWS y conecta con estudiantes apasionados por la nube.",
+  "thumbnail": "https://i.imgur.com/QqR7L0z.png",
+  "meetupUrl": "https://www.meetup.com/aws-sbg-at-universidad-politecnica-de-yucatan/events/315549340/",
+  "calendarIcs": "/events/kickoff-oficial-aws-sbg-upy.ics",
+  "location": "Universidad Politécnica de Yucatán UPY",
+  "locationUrl": "https://www.upy.edu.mx/",
+  "locationRegion": "Yucatán",
+  "venue": "SUM – Universidad Politécnica de Yucatán",
+  "time": "10:00 a.m.",
+  "timeRange": "10:00 – 11:30",
+  "level": "Principiante (¡No se requiere experiencia previa!)",
+  "sections": [
+    {
+      "emoji": "☁️",
+      "title": "Conoce el AWS Student Builder Group",
+      "items": [
+        "Descubre qué es la comunidad y cómo puedes formar parte.",
+        "Aprende sobre los beneficios exclusivos, recursos, certificaciones, eventos y oportunidades de networking."
+      ]
+    },
+    {
+      "emoji": "⚡",
+      "title": "AWS 101: Introducción a la nube",
+      "items": [
+        "Entiende los conceptos fundamentales de Cloud Computing.",
+        "Conoce los servicios más importantes de Amazon Web Services.",
+        "Descubre cómo comenzar a crear tus propios proyectos en AWS."
+      ]
+    }
+  ],
+  "agenda": [
+    "Bienvenida e introducción al AWS Student Builder Group",
+    "Dinámica de integración",
+    "Charla: Beneficios y oportunidades del Student Builder Group",
+    "Charla: AWS 101 – Fundamentos de Cloud Computing y servicios de AWS",
+    "Encuesta de satisfacción (CSAT)"
+  ],
+  "whyAttend": [
+    "Conoce una comunidad enfocada en AWS y tecnologías cloud.",
+    "Aprende los fundamentos para comenzar en la nube.",
+    "Conecta con estudiantes que comparten tus intereses.",
+    "Prepárate para futuros workshops, retos y actividades prácticas."
+  ],
+  "note": "El registro es gratuito, pero el cupo es limitado. Reserva tu lugar con anticipación.",
+  "terms": "Al registrarte en este evento, confirmas que has leído y aceptas los Términos y Condiciones para Eventos de AWS.",
+  "published": true
+}

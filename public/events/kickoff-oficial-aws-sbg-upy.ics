@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//AWS SBG UPY//Event//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:kickoff-oficial-aws-sbg-upy@aws-sbg-upy
+DTSTAMP:20260707T000000Z
+DTSTART:20260709T160000Z
+DTEND:20260709T173000Z
+SUMMARY:Kickoff Oficial del AWS Student Builder Group at UPY!
+LOCATION:Universidad Politécnica de Yucatán - Tablaje Catastral 7193\, carretera Merida-Tetiz Km.4.5\, 97357 Yuc. - Mérida\, mx
+DESCRIPTION:¡Despega tu carrera en la nube! 🚀\n\nRegístrate en: https://www.meetup.com/aws-sbg-at-universidad-politecnica-de-yucatan/events/315549340/
+URL:https://www.meetup.com/aws-sbg-at-universidad-politecnica-de-yucatan/events/315549340/
+END:VEVENT
+END:VCALENDAR

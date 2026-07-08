@@ -1,0 +1,108 @@
+<!--
+  Plantilla base — AWS SBG UPY
+  Copia este archivo y reemplaza {{CONTENT}} con el cuerpo del correo.
+
+  Antes de enviar:
+  1. Reemplaza {{SITE_URL}} con la URL pública del sitio (ej. https://main.xxxxx.amplifyapp.com)
+  2. Verifica que el logo sea accesible en {{SITE_URL}}/brand/logo.svg
+  3. Prueba en Gmail, Outlook y Apple Mail
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>{{SUBJECT}}</title>
+  <style>
+    @font-face {
+      font-family: 'Amazon Ember';
+      src: url('https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_Rg.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Amazon Ember';
+      src: url('https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_Bd.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Amazon Ember Display';
+      src: url('https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_Lt.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+    }
+    body, table, td, p, a, li {
+      font-family: 'Amazon Ember', Arial, Helvetica, sans-serif;
+    }
+    h1, h2, h3 {
+      font-family: 'Amazon Ember Display', Arial, Helvetica, sans-serif;
+      font-weight: 300;
+    }
+    @media only screen and (max-width: 620px) {
+      .wrapper { width: 100% !important; }
+      .stack { display: block !important; width: 100% !important; }
+      .hero-img { width: 100% !important; height: auto !important; }
+      .px { padding-left: 20px !important; padding-right: 20px !important; }
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background-color:#000000;color:#ffffff;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">
+    {{PREHEADER}}
+  </div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#000000;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" class="wrapper" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
+
+          <!-- Header -->
+          <tr>
+            <td class="px" style="padding:0 32px 24px;text-align:center;">
+              <a href="{{SITE_URL}}" style="text-decoration:none;">
+                <img
+                  src="{{SITE_URL}}/brand/logo.svg"
+                  alt="AWS Student Builder Group UPY"
+                  width="72"
+                  height="72"
+                  style="display:block;margin:0 auto;border:0;outline:none;"
+                />
+              </a>
+              <p style="margin:12px 0 0;font-size:13px;font-weight:700;letter-spacing:0.04em;color:#C4B5E0;text-transform:uppercase;">
+                AWS Student Builder Group UPY
+              </p>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td class="px" style="padding:0 32px;">
+              {{CONTENT}}
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td class="px" style="padding:32px;border-top:1px solid #2A2A2A;text-align:center;">
+              <p style="margin:0 0 12px;font-size:13px;color:#A3A3A3;">
+                Universidad Politécnica de Yucatán
+              </p>
+              <p style="margin:0 0 16px;font-size:12px;line-height:1.6;color:#737373;">
+                © 2026 AWS Student Builder Group UPY. No afiliado oficialmente a Amazon Web Services, Inc.
+              </p>
+              <p style="margin:0;font-size:12px;">
+                <a href="https://www.meetup.com/aws-sbg-at-universidad-politecnica-de-yucatan/" style="color:#C4B5E0;text-decoration:none;margin:0 8px;">Meetup</a>
+                <a href="https://www.instagram.com/aws.upy/" style="color:#C4B5E0;text-decoration:none;margin:0 8px;">Instagram</a>
+                <a href="https://linktr.ee/aws.upy" style="color:#C4B5E0;text-decoration:none;margin:0 8px;">Linktree</a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

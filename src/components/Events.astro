@@ -1,0 +1,35 @@
+---
+import EventCard from './EventCard.astro';
+import EventPlaceholderCard from './EventPlaceholderCard.astro';
+import { EVENT_GRID_SLOTS, getUpcomingEvents } from '../lib/events';
+
+const events = getUpcomingEvents();
+const placeholderCount = Math.max(0, EVENT_GRID_SLOTS - events.length);
+---
+
+<section id="eventos" class="relative overflow-hidden border-t-2 border-paper/15 px-6 py-24">
+  <img src="/vectors/clock-blue.svg" alt="" class="sbg-vector sbg-vector--a right-[6%] top-14 hidden h-16 w-16 lg:block" />
+
+  <div class="mx-auto max-w-6xl">
+    <div class="reveal flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+      <div>
+        <p class="font-mono text-sm text-grape">// eventos</p>
+        <h2 class="font-display mt-4 text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">
+          Próximos <span class="text-grape">eventos</span>
+        </h2>
+      </div>
+      <a
+        href="/eventos"
+        class="brut brut-hover brut-press inline-block rounded-xl bg-ink px-5 py-3 font-mono text-xs font-bold text-paper"
+        style="--brut-line: #f2f6f9; --brut-shadow: #ad5cff;"
+      >
+        cal --completo →
+      </a>
+    </div>
+
+    <div class="mt-14 grid gap-8 md:grid-cols-3">
+      {events.map((event) => <EventCard event={event} />)}
+      {Array.from({ length: placeholderCount }).map(() => <EventPlaceholderCard />)}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,84 @@
+---
+const pillars = [
+  {
+    title: 'Talleres y bootcamps',
+    description: 'Sesiones prácticas de AWS, arquitectura cloud, DevOps y buenas prácticas.',
+    icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s4.332.477 4.5 1.253m0-13c1.168-.776 2.754-1.253 4.5-1.253s3.332.477 4.5 1.253v13c-1.168-.776-2.754-1.253-4.5-1.253s-3.332.477-4.5 1.253',
+    color: '#00e582',
+    text: 'text-mint',
+  },
+  {
+    title: 'Certificaciones AWS',
+    description: 'Rutas de estudio guiadas para preparar certificaciones desde nivel Foundational.',
+    icon: 'M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+    color: '#42b4ff',
+    text: 'text-cloud',
+  },
+  {
+    title: 'Hackathons',
+    description: 'Retos de desarrollo en equipo para construir soluciones reales sobre AWS.',
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+    color: '#ad5cff',
+    text: 'text-grape',
+  },
+  {
+    title: 'Networking',
+    description: 'Conexión directa con profesionales de AWS, egresados y otras comunidades tech.',
+    icon: 'M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-1.13a4 4 0 10-4-4 4 4 0 004 4zm6 0a4 4 0 10-4-4',
+    color: '#ff9900',
+    text: 'text-sunset',
+  },
+  {
+    title: 'Proyectos open source',
+    description: 'Contribuciones a proyectos reales usando servicios del ecosistema AWS.',
+    icon: 'M10 20l4-16m4 4l4 4-4 4M6 8l-4 4 4 4',
+    color: '#ff57e9',
+    text: 'text-bubble',
+  },
+  {
+    title: 'Mentoría',
+    description: 'Acompañamiento de miembros senior y egresados en su camino profesional.',
+    icon: 'M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z',
+    color: '#f2f6f9',
+    text: 'text-paper',
+  },
+];
+---
+
+<section id="que-hacemos" class="bg-grid relative overflow-hidden border-t-2 border-paper/15 bg-ink px-6 py-24">
+  <img src="/vectors/wrench-blue.svg" alt="" class="sbg-vector sbg-vector--spin left-[4%] top-12 h-14 w-14 sm:h-16 sm:w-16" />
+  <img src="/vectors/trophy-amber.svg" alt="" class="sbg-vector sbg-vector--b right-[5%] bottom-12 h-16 w-16 sm:h-20 sm:w-20" />
+
+  <div class="mx-auto max-w-6xl">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <p class="font-mono text-sm text-cloud">// que-hacemos</p>
+      <h2 class="font-display mt-4 text-4xl font-extrabold uppercase tracking-tight sm:text-5xl">
+        Actividades para <span class="text-cloud">builders</span>
+      </h2>
+    </div>
+
+    <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        pillars.map((pillar, index) => (
+          <div
+            class={`brut brut-hover reveal rounded-2xl bg-ink-deep p-6 ${index % 2 === 0 ? '-rotate-1' : 'rotate-1'}`}
+            style={`--brut-line: #f2f6f9; --brut-shadow: ${pillar.color};`}
+          >
+            <div class="flex items-start justify-between">
+              <div class={`${pillar.text} flex h-12 w-12 items-center justify-center rounded-xl border-2 border-current`}>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={pillar.icon} />
+                </svg>
+              </div>
+              <span class={`${pillar.text} font-mono text-sm font-bold opacity-70`}>
+                {String(index + 1).padStart(2, '0')}
+              </span>
+            </div>
+            <p class="font-display mt-5 text-xl font-bold tracking-tight text-paper">{pillar.title}</p>
+            <p class="mt-2 text-sm leading-relaxed text-fog">{pillar.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+import type { Event } from '../lib/events';
+
+interface Props {
+  event: Event;
+}
+
+const { event } = Astro.props;
+const href = event.slug ? `/eventos/${event.slug}` : '/eventos';
+---
+
+<a
+  href={href}
+  class="brut brut-hover brut-press reveal group block overflow-hidden rounded-2xl bg-ink"
+  style="--brut-line: #f2f6f9; --brut-shadow: #00e582;"
+>
+  <div class="relative">
+    {
+      event.thumbnail ? (
+        <div class="aspect-square w-full overflow-hidden border-b-2 border-paper/15 bg-ink-deep">
+          <img
+            src={event.thumbnail}
+            alt={event.title}
+            class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+      ) : (
+        <div class="bg-dots flex aspect-square w-full items-center justify-center border-b-2 border-paper/15 bg-ink-deep">
+          <span class="font-display text-5xl font-extrabold text-mint/40">{event.dateLabel}</span>
+        </div>
+      )
+    }
+    <span
+      class="brut absolute left-4 top-4 -rotate-3 rounded-lg bg-mint px-3 py-1.5 font-mono text-xs font-bold text-ink-deep"
+      style="--brut-line: #10151b; --brut-shadow: #10151b;"
+    >
+      {event.dateLabel}
+    </span>
+  </div>
+
+  <div class="p-5">
+    <p class="font-mono text-xs text-fog">{event.dateFormatted}</p>
+    <p class="font-display mt-2 text-lg font-bold leading-snug tracking-tight text-paper">{event.title}</p>
+    <p class="mt-2 line-clamp-2 text-sm text-fog">{event.description}</p>
+    <p class="mt-4 font-mono text-xs font-bold text-mint transition group-hover:translate-x-1">
+      más-info →
+    </p>
+  </div>
+</a>

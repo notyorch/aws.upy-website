@@ -1,0 +1,183 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import EventHero from '../../components/EventHero.astro';
+import { buttonVariants } from '../../lib/heroui';
+import { getAllEvents, getEventBySlug } from '../../lib/events';
+
+export function getStaticPaths() {
+  return getAllEvents().map((event) => ({ params: { slug: event.slug } }));
+}
+
+const { slug } = Astro.params;
+const event = getEventBySlug(slug!);
+
+if (!event) {
+  return Astro.redirect('/eventos');
+}
+
+const outlineCta = buttonVariants({ variant: 'outline', size: 'lg' });
+---
+
+<Layout title={`${event.title} | AWS SBG UPY`} description={event.description}>
+  <Navbar />
+  <main>
+    <EventHero event={event} />
+
+    <article class="px-6 py-12">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid gap-8 lg:grid-cols-[minmax(260px,360px)_1fr] lg:gap-12 xl:gap-16">
+          <div class="hidden lg:block" aria-hidden="true"></div>
+
+          <div class="ml-auto w-full max-w-3xl lg:ml-0 lg:max-w-none [&_p]:text-justify">
+        {
+          event.subtitle && (
+            <p class="text-xl font-bold text-accent">{event.subtitle}</p>
+          )
+        }
+
+        {
+          event.bodyHtml && (
+            <div
+              class={`event-body space-y-4 text-muted ${event.subtitle ? 'mt-6' : ''}`}
+              set:html={event.bodyHtml}
+            />
+          )
+        }
+
+        {
+          event.sections && event.sections.length > 0 && (
+            <section class="mt-10">
+              <h2 class="text-lg font-bold text-foreground">¿Qué encontrarás?</h2>
+              <div class="mt-6 space-y-6">
+                {
+                  event.sections.map((section) => (
+                    <div class="rounded-xl border border-border bg-surface p-6">
+                      <h3 class="font-bold text-foreground">
+                        {section.emoji && <span class="mr-2">{section.emoji}</span>}
+                        {section.title}
+                      </h3>
+                      <ul class="mt-4 space-y-2">
+                        {
+                          section.items.map((item) => (
+                            <li class="flex gap-3 text-sm text-muted">
+                              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                              <span>{item}</span>
+                            </li>
+                          ))
+                        }
+                      </ul>
+                    </div>
+                  ))
+                }
+              </div>
+            </section>
+          )
+        }
+
+        <section class="mt-10 rounded-xl border border-border bg-surface p-6">
+          <h2 class="text-lg font-bold text-foreground">Información del evento</h2>
+          <dl class="mt-4 space-y-4">
+            {
+              (event.venue ?? event.location) && (
+                <div>
+                  <dt class="text-xs font-bold uppercase tracking-wide text-muted">📍 Lugar</dt>
+                  <dd class="mt-1 text-sm">{event.venue ?? event.location}</dd>
+                </div>
+              )
+            }
+            <div>
+              <dt class="text-xs font-bold uppercase tracking-wide text-muted">📆 Fecha</dt>
+              <dd class="mt-1 text-sm capitalize">{event.dateFormatted}</dd>
+            </div>
+            {
+              (event.timeRange ?? event.time) && (
+                <div>
+                  <dt class="text-xs font-bold uppercase tracking-wide text-muted">🕙 Hora</dt>
+                  <dd class="mt-1 text-sm">{event.timeRange ?? event.time}</dd>
+                </div>
+              )
+            }
+            {
+              event.level && (
+                <div>
+                  <dt class="text-xs font-bold uppercase tracking-wide text-muted">🎓 Nivel</dt>
+                  <dd class="mt-1 text-sm">{event.level}</dd>
+                </div>
+              )
+            }
+          </dl>
+        </section>
+
+        {
+          event.agenda && event.agenda.length > 0 && (
+            <section class="mt-10">
+              <h2 class="text-lg font-bold text-foreground">Agenda</h2>
+              <ol class="mt-4 space-y-3">
+                {
+                  event.agenda.map((item, index) => (
+                    <li class="flex gap-4 text-muted">
+                      <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/15 text-xs font-bold text-accent">
+                        {index + 1}
+                      </span>
+                      <span class="pt-0.5">{item}</span>
+                    </li>
+                  ))
+                }
+              </ol>
+            </section>
+          )
+        }
+
+        {
+          event.whyAttend && event.whyAttend.length > 0 && (
+            <section class="mt-10">
+              <h2 class="text-lg font-bold text-foreground">¿Por qué asistir?</h2>
+              <ul class="mt-4 space-y-3">
+                {
+                  event.whyAttend.map((item) => (
+                    <li class="flex gap-3 text-muted">
+                      <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                      <span>{item}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </section>
+          )
+        }
+
+        {
+          event.note && (
+            <p class="mt-10 rounded-xl border border-accent/30 bg-accent/5 p-5 text-sm text-foreground">
+              🎟️ {event.note}
+            </p>
+          )
+        }
+
+        {
+          event.terms && (
+            <p class="mt-6 text-xs text-muted">
+              <strong>Términos y condiciones:</strong> {event.terms}
+            </p>
+          )
+        }
+
+        <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+          {
+            event.calendarIcs && (
+              <a href={event.calendarIcs} download class={outlineCta}>
+                Agregar al calendario (.ics)
+              </a>
+            )
+          }
+          <a href="/eventos" class={outlineCta}>Ver todos los eventos</a>
+        </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>

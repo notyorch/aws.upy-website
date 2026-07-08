@@ -1,0 +1,35 @@
+---
+interface Partner {
+  name: string;
+  logo: string;
+  shadow: string;
+  rotate: string;
+}
+
+const partners: Partner[] = [
+  { name: 'Amazon Web Services', logo: '/logos/aws.png', shadow: '#ff9900', rotate: '-rotate-2' },
+  { name: 'Universidad Politécnica de Yucatán', logo: '/logos/upy.png', shadow: '#42b4ff', rotate: 'rotate-2' },
+];
+---
+
+<section id="aliados" class="border-t-2 border-paper/15 px-6 py-20">
+  <div class="reveal mx-auto max-w-6xl text-center">
+    <p class="font-mono text-sm text-bubble">// aliados</p>
+    <h2 class="font-display mt-4 text-3xl font-extrabold uppercase tracking-tight sm:text-4xl">
+      Con el respaldo de
+    </h2>
+
+    <div class="mt-12 flex flex-wrap items-center justify-center gap-10 sm:gap-16">
+      {
+        partners.map((partner) => (
+          <div
+            class={`brut brut-hover ${partner.rotate} rounded-2xl bg-ink-deep px-8 py-6`}
+            style={`--brut-line: #f2f6f9; --brut-shadow: ${partner.shadow};`}
+          >
+            <img src={partner.logo} alt={partner.name} class="h-14 w-auto object-contain sm:h-18" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
