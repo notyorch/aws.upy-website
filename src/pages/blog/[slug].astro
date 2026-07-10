@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import BlogTop8BitButton from '../../components/BlogTop8BitButton.astro';
 import { getAllPosts, getPostBySlug } from '../../lib/blog';
 
 export function getStaticPaths() {
@@ -18,8 +19,33 @@ if (!post) {
 
 <Layout title={`${post.title} | AWS SBG UPY`} description={post.description}>
   <Navbar />
-  <main>
-    <article class="px-6 pb-24 pt-16 sm:pt-20">
+  <main class="relative overflow-x-hidden">
+    <img
+      src="/vectors/bracket-smile-mint.svg"
+      alt=""
+      aria-hidden="true"
+      class="sbg-vector sbg-vector--a right-[3%] top-28 z-0 hidden h-14 w-14 md:block lg:top-36 lg:h-20 lg:w-20"
+    />
+    <img
+      src="/vectors/ladder-purple.svg"
+      alt=""
+      aria-hidden="true"
+      class="sbg-vector sbg-vector--b left-[2%] top-[38%] z-0 hidden h-16 w-16 lg:block"
+    />
+    <img
+      src="/vectors/drop-mint.svg"
+      alt=""
+      aria-hidden="true"
+      class="sbg-vector sbg-vector--a bottom-48 right-[4%] z-0 h-12 w-12 sm:h-16 sm:w-16"
+    />
+    <img
+      src="/vectors/clock-blue.svg"
+      alt=""
+      aria-hidden="true"
+      class="sbg-vector sbg-vector--b bottom-24 left-[4%] z-0 hidden h-14 w-14 sm:block"
+    />
+
+    <article class="relative z-10 px-6 pb-24 pt-16 sm:pt-20">
       <div class="mx-auto max-w-3xl">
         <a
           href="/blog"
@@ -28,7 +54,7 @@ if (!post) {
           ← /blog
         </a>
 
-        <header class="mt-8">
+        <header id="entrada" class="blog-entry-header mt-8">
           <p class="font-mono text-xs text-fog">
             <span class="text-mint">$</span> cat {post.slug}.md
           </p>
@@ -85,33 +111,33 @@ if (!post) {
         }
 
         {
-          (post.instagramSlot || post.instagramUrl) && (
-            <section class="mt-14" aria-label="Embed">
-              <div
-                class="brut overflow-hidden rounded-2xl bg-ink"
-                style="--brut-line: #f2f6f9; --brut-shadow: #ff57e9;"
+          post.instagramUrl && (
+            <section class="mt-14" aria-label="Publicación en Instagram">
+              <blockquote
+                class="instagram-media"
+                data-instgrm-captioned
+                data-instgrm-permalink={post.instagramUrl}
+                data-instgrm-version="14"
+                style="background:#FFF; border:0; border-radius:3px; margin:0 auto; max-width:540px; min-width:326px; padding:0; width:99.375%;"
               >
-                {
-                  post.instagramUrl ? (
-                    <div class="instagram-embed p-4 sm:p-6">
-                      <blockquote
-                        class="instagram-media"
-                        data-instgrm-permalink={post.instagramUrl}
-                        data-instgrm-version="14"
-                        style="background:#161d26; border:0; margin:0 auto; max-width:540px; width:100%;"
-                      >
-                        <a href={post.instagramUrl} target="_blank" rel="noopener noreferrer" class="font-mono text-sm text-bubble">
-                          Ver en Instagram →
-                        </a>
-                      </blockquote>
-                    </div>
-                  ) : (
-                    <div class="bg-dots flex min-h-[420px] flex-col items-center justify-center gap-3 px-6 py-16 text-center">
-                      <p class="font-mono text-xs text-fog">embed · placeholder</p>
-                      <p class="max-w-xs font-mono text-sm text-paper/80">[ post / reel ]</p>
-                    </div>
-                  )
-                }
+                <a
+                  href={post.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ver esta publicación en Instagram
+                </a>
+              </blockquote>
+            </section>
+          )
+        }
+
+        {
+          post.instagramSlot && !post.instagramUrl && (
+            <section class="mt-14" aria-label="Embed">
+              <div class="bg-dots flex min-h-[420px] flex-col items-center justify-center gap-3 rounded-2xl px-6 py-16 text-center">
+                <p class="font-mono text-xs text-fog">embed · placeholder</p>
+                <p class="max-w-xs font-mono text-sm text-paper/80">[ post / reel ]</p>
               </div>
             </section>
           )
@@ -128,12 +154,14 @@ if (!post) {
         </div>
       </div>
     </article>
+
+    <BlogTop8BitButton />
   </main>
   <Footer />
 </Layout>
 
 {
   post.instagramUrl && (
-    <script async src="//www.instagram.com/embed.js"></script>
+    <script async src="https://www.instagram.com/embed.js"></script>
   )
 }

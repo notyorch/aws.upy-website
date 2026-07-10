@@ -37,6 +37,7 @@ Somos una comunidad estudiantil de la UPY respaldada oficialmente por el program
 
 Si quieres unirte, preguntar por un evento o simplemente saludar, aquí estamos:
 
+- **Correo:** [aws.sbg@upy.edu.mx](mailto:aws.sbg@upy.edu.mx) (también [awscloudclub@upy.edu.mx](mailto:awscloudclub@upy.edu.mx))
 - **Instagram:** [instagram.com/aws.upy](https://www.instagram.com/aws.upy/)
 - **Meetup:** [AWS SBG at Universidad Politécnica de Yucatán](https://www.meetup.com/aws-sbg-at-universidad-politecnica-de-yucatan/)
 - **LinkedIn:** [AWS UPY](https://www.linkedin.com/company/aws-upy)

@@ -9,6 +9,10 @@
 </p>
 
 <p align="center">
+  <a href="https://main.d20j0nh5g5a4uf.amplifyapp.com/"><strong>🌐 Production site</strong></a>
+</p>
+
+<p align="center">
   <a href="https://astro.build/">
     <img src="https://img.shields.io/badge/Astro-7.x-0D1117?style=flat-square&logo=astro&logoColor=white" alt="Astro 7" />
   </a>
@@ -207,6 +211,8 @@ No server runtime is required — Astro is configured with `output: 'static'`.
 
 | Platform | Link |
 |----------|------|
+| Website | [main.d20j0nh5g5a4uf.amplifyapp.com](https://main.d20j0nh5g5a4uf.amplifyapp.com/) |
+| Email | [aws.sbg@upy.edu.mx](mailto:aws.sbg@upy.edu.mx) |
 | Meetup | [aws-sbg-at-universidad-politecnica-de-yucatan](https://www.meetup.com/aws-sbg-at-universidad-politecnica-de-yucatan/) |
 | Instagram | [@aws.upy](https://www.instagram.com/aws.upy/) |
 | LinkedIn | [AWS UPY](https://www.linkedin.com/company/aws-upy) |

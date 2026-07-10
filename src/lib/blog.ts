@@ -76,3 +76,23 @@ export function getAllPosts(): BlogPost[] {
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return posts.find((post) => post.slug === slug);
 }
+
+export interface BlogYearGroup {
+  year: string;
+  posts: BlogPost[];
+}
+
+export function getPostsGroupedByYear(): BlogYearGroup[] {
+  const map = new Map<string, BlogPost[]>();
+
+  for (const post of posts) {
+    const year = post.date.slice(0, 4);
+    const yearPosts = map.get(year) ?? [];
+    yearPosts.push(post);
+    map.set(year, yearPosts);
+  }
+
+  return [...map.entries()]
+    .sort(([a], [b]) => Number(b) - Number(a))
+    .map(([year, yearPosts]) => ({ year, posts: yearPosts }));
+}

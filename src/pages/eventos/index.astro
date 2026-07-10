@@ -3,13 +3,11 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import EventCard from '../../components/EventCard.astro';
-import EventPlaceholderCard from '../../components/EventPlaceholderCard.astro';
-import { EVENT_GRID_SLOTS, getAllEvents, getUpcomingEvents } from '../../lib/events';
+import { getAllEvents, getUpcomingEvents } from '../../lib/events';
 
 const upcoming = getUpcomingEvents();
 const past = getAllEvents().filter((event) => event.concluded).reverse();
 const events = [...upcoming, ...past];
-const placeholderCount = Math.max(0, EVENT_GRID_SLOTS - upcoming.length);
 ---
 
 <Layout
@@ -31,7 +29,6 @@ const placeholderCount = Math.max(0, EVENT_GRID_SLOTS - upcoming.length);
 
       <div class="mt-12 grid gap-6 md:grid-cols-3">
         {events.map((event) => <EventCard event={event} />)}
-        {Array.from({ length: placeholderCount }).map(() => <EventPlaceholderCard />)}
       </div>
     </div>
   </main>

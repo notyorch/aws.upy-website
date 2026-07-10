@@ -17,5 +17,7 @@
   "meetupUrl": "https://www.meetup.com/aws-sbg-at-universidad-politecnica-de-yucatan/",
   "instagramUrl": "https://www.instagram.com/aws.upy/",
   "linkedinUrl": "https://www.linkedin.com/company/aws-upy",
-  "linktreeUrl": "https://linktr.ee/aws.upy"
+  "linktreeUrl": "https://linktr.ee/aws.upy",
+  "contactEmail": "aws.sbg@upy.edu.mx",
+  "contactEmailAlias": "awscloudclub@upy.edu.mx"
 }

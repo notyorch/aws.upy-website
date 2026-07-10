@@ -2,6 +2,7 @@
 const year = new Date().getFullYear();
 
 const socials = [
+  { label: 'email', href: 'mailto:aws.sbg@upy.edu.mx', color: 'text-sunset', external: false },
   { label: 'instagram', href: 'https://www.instagram.com/aws.upy/', color: 'text-bubble' },
   { label: 'linkedin', href: 'https://www.linkedin.com/company/aws-upy', color: 'text-cloud' },
   { label: 'meetup', href: 'https://www.meetup.com/aws-sbg-at-universidad-politecnica-de-yucatan/', color: 'text-grape' },
@@ -11,8 +12,9 @@ const socials = [
 
 <footer class="border-t-2 border-paper/15 bg-ink px-6 py-12">
   <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-8 sm:flex-row">
-    <a href="/" class="flex items-center gap-3">
-      <img src="/brand/logo.svg" alt="AWS Student Builder Group UPY" class="h-9 w-9 object-contain" />
+    <a href="/" class="flex items-center gap-2.5 sm:gap-3">
+      <img src="/logos/aws.png" alt="Amazon Web Services" class="h-7 w-auto object-contain sm:h-8" />
+      <img src="/brand/logo.svg" alt="AWS Student Builder Group UPY" class="h-10 w-auto object-contain sm:h-11" />
       <span class="font-mono text-sm font-bold">
         <span class="text-fog">~/</span>aws-sbg<span class="text-mint">@upy</span>
       </span>
@@ -23,8 +25,9 @@ const socials = [
         socials.map((social) => (
           <a
             href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            {...(social.external !== false
+              ? { target: '_blank', rel: 'noopener noreferrer' }
+              : {})}
             class="group text-fog transition hover:text-paper"
           >
             <span class={`${social.color} opacity-60 transition group-hover:opacity-100`}>[</span
@@ -39,5 +42,7 @@ const socials = [
     <span class="text-mint">$</span> echo "© {year} AWS Student Builder Group UPY · Universidad
     Politécnica de Yucatán. No afiliado oficialmente a Amazon Web Services, Inc."
     <span class="text-cloud">(:</span>
+    <br />
+    <a href="mailto:aws.sbg@upy.edu.mx" class="text-cloud transition hover:text-paper">aws.sbg@upy.edu.mx</a>
   </p>
 </footer>

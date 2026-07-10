@@ -1,0 +1,135 @@
+---
+import { getPostsGroupedByYear } from '../lib/blog';
+
+const palette = [
+  { color: '#00e582', shadow: '#00e582', text: 'text-mint' },
+  { color: '#42b4ff', shadow: '#42b4ff', text: 'text-cloud' },
+  { color: '#ad5cff', shadow: '#ad5cff', text: 'text-grape' },
+  { color: '#ff9900', shadow: '#ff9900', text: 'text-sunset' },
+  { color: '#ff57e9', shadow: '#ff57e9', text: 'text-bubble' },
+];
+
+const years = getPostsGroupedByYear();
+
+let itemIndex = 0;
+const timeline = years.map((group, yearIndex) => ({
+  ...group,
+  yearIndex,
+  entries: group.posts.map((post, index) => {
+    const entry = {
+      post,
+      index,
+      swatch: palette[itemIndex % palette.length],
+      stagger: itemIndex * 90,
+      isLast: index === group.posts.length - 1,
+    };
+    itemIndex += 1;
+    return entry;
+  }),
+}));
+---
+
+<div class="blog-timeline">
+  {
+    timeline.map(({ year, yearIndex, entries }) => (
+      <section class="blog-timeline__year" aria-label={`Entradas de ${year}`}>
+        <div class="blog-timeline__year-head reveal">
+          <img
+            src="/vectors/blog/pixel-sparkle.svg"
+            alt=""
+            class="blog-timeline__sparkle blog-timeline__sparkle--a"
+            width="20"
+            height="20"
+          />
+          <div
+            class="blog-timeline__year-badge brut"
+            style={`--brut-line: #f2f6f9; --brut-shadow: ${palette[yearIndex % palette.length].color};`}
+          >
+            <img src="/vectors/blog/pixel-calendar.svg" alt="" width="20" height="20" />
+            <span class="font-mono text-sm font-bold text-paper">{year}</span>
+          </div>
+          <img
+            src="/vectors/blog/pixel-sparkle.svg"
+            alt=""
+            class="blog-timeline__sparkle blog-timeline__sparkle--b"
+            width="16"
+            height="16"
+          />
+        </div>
+
+        <ol class="blog-timeline__list">
+          {
+            entries.map(({ post, swatch, stagger, isLast }) => (
+              <li
+                class="blog-timeline__item reveal reveal--stagger"
+                style={`--stagger: ${stagger}ms; --node-color: ${swatch.color};`}
+              >
+                <div class="blog-timeline__rail" aria-hidden="true">
+                  <span class="blog-timeline__node">
+                    <span class="blog-timeline__node-core" />
+                  </span>
+                  {!isLast && <span class="blog-timeline__connector" />}
+                </div>
+
+                <a
+                  href={`/blog/${post.slug}`}
+                  class="blog-timeline__card brut brut-hover brut-press group"
+                  style={`--brut-line: #f2f6f9; --brut-shadow: ${swatch.shadow};`}
+                >
+                  <div class="blog-timeline__card-meta">
+                    <span class={`blog-timeline__date font-mono text-xs font-bold ${swatch.text}`}>
+                      {post.dateLabel}
+                    </span>
+                    {
+                      post.tags && post.tags.length > 0 && (
+                        <span class="font-mono text-[10px] text-fog">
+                          {post.tags.map((tag) => `#${tag}`).join(' · ')}
+                        </span>
+                      )
+                    }
+                  </div>
+
+                  <div class="blog-timeline__card-body">
+                    <div class="min-w-0 flex-1">
+                      <h2 class="font-display text-lg font-bold leading-snug tracking-tight text-paper sm:text-xl">
+                        {post.title}
+                      </h2>
+                      <p class="mt-2 line-clamp-2 text-sm text-fog">{post.description}</p>
+                      {
+                        post.author && (
+                          <p class="mt-3 font-mono text-[11px] text-fog">
+                            <span class="text-paper/40">by</span> {post.author}
+                          </p>
+                        )
+                      }
+                      <p class="mt-4 font-mono text-xs font-bold text-cloud transition group-hover:translate-x-1">
+                        leer →
+                      </p>
+                    </div>
+
+                    {
+                      post.thumbnail ? (
+                        <div class="blog-timeline__thumb hidden shrink-0 overflow-hidden rounded-lg border-2 border-paper/15 sm:block">
+                          <img
+                            src={post.thumbnail}
+                            alt=""
+                            class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                            loading="lazy"
+                          />
+                        </div>
+                      ) : (
+                        <div class="blog-timeline__thumb blog-timeline__thumb--empty hidden shrink-0 sm:flex">
+                          <img src="/vectors/blog/pixel-calendar.svg" alt="" width="28" height="28" />
+                        </div>
+                      )
+                    }
+                  </div>
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+    ))
+  }
+</div>
