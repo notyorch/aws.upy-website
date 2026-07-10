@@ -32,10 +32,10 @@ const href = event.slug ? `/eventos/${event.slug}` : '/eventos';
       )
     }
     <span
-      class="brut absolute left-4 top-4 -rotate-3 rounded-lg bg-mint px-3 py-1.5 font-mono text-xs font-bold text-ink-deep"
+      class={`brut absolute left-4 top-4 -rotate-3 rounded-lg px-3 py-1.5 font-mono text-xs font-bold ${event.concluded ? 'bg-fog text-ink-deep' : 'bg-mint text-ink-deep'}`}
       style="--brut-line: #10151b; --brut-shadow: #10151b;"
     >
-      {event.dateLabel}
+      {event.concluded ? 'CONCLUIDO' : event.dateLabel}
     </span>
   </div>
 
@@ -43,8 +43,8 @@ const href = event.slug ? `/eventos/${event.slug}` : '/eventos';
     <p class="font-mono text-xs text-fog">{event.dateFormatted}</p>
     <p class="font-display mt-2 text-lg font-bold leading-snug tracking-tight text-paper">{event.title}</p>
     <p class="mt-2 line-clamp-2 text-sm text-fog">{event.description}</p>
-    <p class="mt-4 font-mono text-xs font-bold text-mint transition group-hover:translate-x-1">
-      más-info →
+    <p class={`mt-4 font-mono text-xs font-bold transition group-hover:translate-x-1 ${event.concluded ? 'text-fog' : 'text-mint'}`}>
+      {event.concluded ? 'ver-recap →' : 'más-info →'}
     </p>
   </div>
 </a>

@@ -209,8 +209,7 @@ No server runtime is required — Astro is configured with `output: 'static'`.
 |----------|------|
 | Meetup | [aws-sbg-at-universidad-politecnica-de-yucatan](https://www.meetup.com/aws-sbg-at-universidad-politecnica-de-yucatan/) |
 | Instagram | [@aws.upy](https://www.instagram.com/aws.upy/) |
-| LinkedIn | [AWS Cloud Club UPY](https://www.linkedin.com/company/aws-cloud-club-upy/) |
-| YouTube | [@AWSCloudClubUPY](https://www.youtube.com/@AWSCloudClubUPY) |
+| LinkedIn | [AWS UPY](https://www.linkedin.com/company/aws-upy) |
 | Linktree | [linktr.ee/aws.upy](https://linktr.ee/aws.upy) |
 
 ---

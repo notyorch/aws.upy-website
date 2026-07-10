@@ -1,100 +1,100 @@
 @import "@heroui/styles";
 
-/* Amazon Ember: tipografía oficial desde S3 (aws-sbg-resources/Fonts/) */
+/* Amazon Ember: servidas desde /fonts/ (mismo origen en Amplify; sin depender de CORS S3) */
 @font-face {
   font-family: "Amazon Ember";
-  src: url("https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_Rg.ttf") format("truetype");
+  src: url("/fonts/AmazonEmberDisplay_Rg.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Amazon Ember";
-  src: url("https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_Bd.ttf") format("truetype");
+  src: url("/fonts/AmazonEmberDisplay_Bd.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Amazon Ember Display";
-  src: url("https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_Lt.ttf") format("truetype");
+  src: url("/fonts/AmazonEmberDisplay_Lt.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Amazon Ember Display";
-  src: url("https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_LtIt.ttf") format("truetype");
+  src: url("/fonts/AmazonEmberDisplay_LtIt.ttf") format("truetype");
   font-weight: 300;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Amazon Ember Display";
-  src: url("https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_Rg.ttf") format("truetype");
+  src: url("/fonts/AmazonEmberDisplay_Rg.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Amazon Ember Display";
-  src: url("https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_RgIt.ttf") format("truetype");
+  src: url("/fonts/AmazonEmberDisplay_RgIt.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Amazon Ember Display";
-  src: url("https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_Md.ttf") format("truetype");
+  src: url("/fonts/AmazonEmberDisplay_Md.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Amazon Ember Display";
-  src: url("https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_MdIt.ttf") format("truetype");
+  src: url("/fonts/AmazonEmberDisplay_MdIt.ttf") format("truetype");
   font-weight: 500;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Amazon Ember Display";
-  src: url("https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_Bd.ttf") format("truetype");
+  src: url("/fonts/AmazonEmberDisplay_Bd.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Amazon Ember Display";
-  src: url("https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_BdIt.ttf") format("truetype");
+  src: url("/fonts/AmazonEmberDisplay_BdIt.ttf") format("truetype");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Amazon Ember Display";
-  src: url("https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_He.ttf") format("truetype");
+  src: url("/fonts/AmazonEmberDisplay_He.ttf") format("truetype");
   font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Amazon Ember Display";
-  src: url("https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberDisplay_HeIt.ttf") format("truetype");
+  src: url("/fonts/AmazonEmberDisplay_HeIt.ttf") format("truetype");
   font-weight: 800;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Amazon Ember Mono";
-  src: url("https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberMono_Rg.ttf") format("truetype");
+  src: url("/fonts/AmazonEmberMono_Rg.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Amazon Ember Mono";
-  src: url("https://aws-sbg-resources.s3.us-east-1.amazonaws.com/Fonts/AmazonEmberMono_Bd.ttf") format("truetype");
+  src: url("/fonts/AmazonEmberMono_Bd.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -265,31 +265,97 @@ html {
   }
 }
 
-.event-body p {
+.event-body p,
+.blog-body p {
   margin: 0 0 1rem;
   line-height: 1.7;
 }
 
-.event-body p:last-child {
+.event-body p:last-child,
+.blog-body p:last-child {
   margin-bottom: 0;
 }
 
-.event-body strong {
-  color: var(--foreground);
+.event-body strong,
+.blog-body strong {
+  color: var(--color-paper, #f2f6f9);
   font-weight: 700;
 }
 
-.event-body h2 {
+.event-body h2,
+.blog-body h2 {
   margin: 1.5rem 0 0.75rem;
   font-size: 1.125rem;
   font-weight: 700;
-  color: var(--foreground);
+  color: var(--color-paper, #f2f6f9);
 }
 
-.event-body ul {
+.blog-body .blog-illo {
+  margin: 0.25rem 0 1.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+.blog-body .blog-illo img {
+  width: 4rem;
+  height: 4rem;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.event-body ul,
+.blog-body ul {
   margin: 0 0 1rem;
   padding-left: 1.25rem;
   list-style: disc;
+}
+
+.event-body table,
+.blog-body table {
+  width: 100%;
+  margin: 0 0 1.5rem;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.event-body th,
+.event-body td,
+.blog-body th,
+.blog-body td {
+  padding: 0.875rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(242, 246, 249, 0.12);
+}
+
+.event-body th,
+.blog-body th {
+  font-weight: 700;
+  color: var(--color-paper, #f2f6f9);
+}
+
+.event-body td,
+.blog-body td {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+@media (max-width: 640px) {
+  .event-body table,
+  .blog-body table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .event-body th,
+  .event-body td,
+  .blog-body th,
+  .blog-body td {
+    padding: 0.75rem 0.875rem;
+  }
 }
 
 .bg-grid {

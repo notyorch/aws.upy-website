@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getAllPosts } from '../../lib/blog';
+
+const posts = getAllPosts();
+---
+
+<Layout
+  title="Blog | AWS Student Builder Group UPY"
+  description="Notas, talleres y noticias del AWS Student Builder Group en la Universidad Politécnica de Yucatán."
+>
+  <Navbar />
+  <main class="px-6 py-24">
+    <div class="mx-auto max-w-6xl">
+      <div class="max-w-2xl">
+        <p class="font-mono text-sm text-cloud">// blog</p>
+        <h1 class="font-display mt-4 text-3xl font-extrabold uppercase tracking-tight sm:text-5xl">
+          Bitácora <span class="text-cloud">builder</span>
+        </h1>
+        <p class="mt-4 text-lg text-fog">
+          Recaps de eventos, tips de AWS y lo que va pasando en la comunidad UPY.
+        </p>
+      </div>
+
+      {
+        posts.length > 0 ? (
+          <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {posts.map((post) => (
+              <BlogCard post={post} />
+            ))}
+          </div>
+        ) : (
+          <div class="brut mt-12 rounded-2xl border-dashed bg-ink/40 p-10 text-center" style="--brut-line: #f2f6f9; --brut-shadow: #42b4ff;">
+            <p class="font-mono text-sm text-fog">// próximamente</p>
+            <p class="mt-3 text-paper">Aún no hay entradas publicadas.</p>
+          </div>
+        )
+      }
+    </div>
+  </main>
+  <Footer />
+</Layout>

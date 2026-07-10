@@ -1,0 +1,56 @@
+---
+import type { BlogPost } from '../lib/blog';
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+---
+
+<a
+  href={`/blog/${post.slug}`}
+  class="brut brut-hover brut-press reveal group block overflow-hidden rounded-2xl bg-ink"
+  style="--brut-line: #f2f6f9; --brut-shadow: #42b4ff;"
+>
+  <div class="relative border-b-2 border-paper/15 bg-ink-deep">
+    {
+      post.thumbnail ? (
+        <div class="aspect-[16/9] w-full overflow-hidden">
+          <img
+            src={post.thumbnail}
+            alt={post.title}
+            class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+      ) : (
+        <div class="bg-dots flex aspect-[16/9] w-full items-center justify-center">
+          <span class="font-mono text-sm text-fog">// post</span>
+        </div>
+      )
+    }
+    <span
+      class="brut absolute left-4 top-4 -rotate-2 rounded-lg bg-cloud px-3 py-1.5 font-mono text-xs font-bold text-ink-deep"
+      style="--brut-line: #10151b; --brut-shadow: #10151b;"
+    >
+      {post.dateLabel}
+    </span>
+  </div>
+  <div class="p-5">
+    {
+      post.tags && post.tags.length > 0 && (
+        <p class="font-mono text-[11px] text-grape">
+          {post.tags.map((tag) => `#${tag}`).join(' · ')}
+        </p>
+      )
+    }
+    <p class="font-display mt-2 text-lg font-bold leading-snug tracking-tight text-paper">
+      {post.title}
+    </p>
+    <p class="mt-2 line-clamp-2 text-sm text-fog">{post.description}</p>
+    <p class="mt-4 font-mono text-xs font-bold text-cloud transition group-hover:translate-x-1">
+      leer →
+    </p>
+  </div>
+</a>

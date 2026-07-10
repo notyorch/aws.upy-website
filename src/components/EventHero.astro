@@ -111,9 +111,16 @@ const timeDisplay = event.timeRange ?? event.time;
           }
         </div>
 
-        {
-          event.meetupUrl && (
-            <div class="mt-10 max-w-md">
+        <div class="mt-10 max-w-md">
+          {
+            event.concluded ? (
+              <div
+                class={`${ctaClass} pointer-events-none justify-center opacity-70`}
+                aria-disabled="true"
+              >
+                Concluido
+              </div>
+            ) : event.meetupUrl ? (
               <a
                 href={event.meetupUrl}
                 target="_blank"
@@ -122,9 +129,9 @@ const timeDisplay = event.timeRange ?? event.time;
               >
                 Inscripción
               </a>
-            </div>
-          )
-        }
+            ) : null
+          }
+        </div>
       </div>
     </div>
   </div>

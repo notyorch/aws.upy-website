@@ -74,17 +74,27 @@
           ✕
         </button>
       </div>
-      <div class="space-y-3 px-5 py-6 leading-relaxed">
-        <p id="join-soon-title">
-          <span class="text-mint">$</span> <span class="text-paper">aws sbg register --campus upy</span>
+      <div id="join-term-body" class="space-y-3 px-5 py-6 leading-relaxed" aria-live="polite">
+        <p id="join-soon-title" class="min-h-[1.4em]">
+          <span class="text-mint">$</span>{' '}
+          <span data-term-line data-term-class="text-paper" data-term-text="aws sbg register --campus upy"></span>
+          <span data-term-caret class="cursor-blink text-paper">▮</span>
         </p>
-        <p class="text-fog">Verificando inscripciones...</p>
-        <p>
-          <span class="text-sunset">!</span>{' '}
-          <span class="text-mint">Próximamente se abrirán las inscripciones al club.</span>
+        <p class="min-h-[1.4em] text-fog">
+          <span data-term-line data-term-class="text-fog" data-term-text="Verificando inscripciones..."></span>
         </p>
-        <p class="pt-1 text-fog">
-          <span class="text-mint">$</span> <span class="cursor-blink text-paper">_</span>
+        <p class="min-h-[1.4em]">
+          <span class="text-sunset opacity-0" data-term-bang>!</span>{' '}
+          <span
+            data-term-line
+            data-term-class="text-mint"
+            data-term-text="Próximamente se abrirán las inscripciones al club."
+          ></span>
+        </p>
+        <p class="pt-1 min-h-[1.4em] text-fog opacity-0" data-term-prompt>
+          <span class="text-mint">$</span>{' '}
+          <span class="text-fog/50">enter to exit</span>{' '}
+          <span class="cursor-blink text-paper">▮</span>
         </p>
       </div>
     </div>
@@ -94,6 +104,61 @@
 <script>
   const joinBtn = document.getElementById('join-form-btn');
   const joinModal = document.getElementById('join-soon-modal');
+  const termCaret = joinModal?.querySelector('[data-term-caret]');
+  const termBang = joinModal?.querySelector('[data-term-bang]');
+  const termPrompt = joinModal?.querySelector('[data-term-prompt]');
+  const termLines = joinModal ? [...joinModal.querySelectorAll('[data-term-line]')] : [];
+
+  let typingToken = 0;
+  let typingDone = false;
+
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  const resetTerminal = () => {
+    typingDone = false;
+    termLines.forEach((line) => {
+      line.textContent = '';
+      line.className = '';
+    });
+    termBang?.classList.add('opacity-0');
+    termPrompt?.classList.add('opacity-0');
+    if (termCaret) termCaret.classList.remove('hidden');
+  };
+
+  /** Stream estilo generación de IA: chunks cortos, ritmo irregular. */
+  const streamText = async (el, text, token) => {
+    const cls = el.getAttribute('data-term-class') ?? '';
+    el.className = cls;
+    let i = 0;
+    while (i < text.length) {
+      if (token !== typingToken) return;
+      const chunk = Math.min(text.length - i, 1 + Math.floor(Math.random() * 3));
+      i += chunk;
+      el.textContent = text.slice(0, i);
+      await sleep(22 + Math.random() * 28);
+    }
+  };
+
+  const runTerminalSequence = async () => {
+    const token = ++typingToken;
+    resetTerminal();
+    await sleep(120);
+    if (token !== typingToken) return;
+
+    for (let index = 0; index < termLines.length; index++) {
+      if (token !== typingToken) return;
+      const line = termLines[index];
+      const text = line.getAttribute('data-term-text') ?? '';
+      if (index === 2) termBang?.classList.remove('opacity-0');
+      await streamText(line, text, token);
+      if (token !== typingToken) return;
+      await sleep(90);
+    }
+
+    if (termCaret) termCaret.classList.add('hidden');
+    termPrompt?.classList.remove('opacity-0');
+    typingDone = true;
+  };
 
   const openJoinModal = () => {
     if (!joinModal) return;
@@ -101,9 +166,12 @@
     joinModal.classList.add('flex');
     joinModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    void runTerminalSequence();
   };
 
   const closeJoinModal = () => {
+    typingToken += 1;
+    typingDone = false;
     if (!joinModal) return;
     joinModal.classList.add('hidden');
     joinModal.classList.remove('flex');
@@ -112,6 +180,8 @@
     joinBtn?.focus();
   };
 
+  const isModalOpen = () => Boolean(joinModal && !joinModal.classList.contains('hidden'));
+
   joinBtn?.addEventListener('click', openJoinModal);
 
   joinModal?.querySelectorAll('[data-join-modal-close]').forEach((el) => {
@@ -119,7 +189,14 @@
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && joinModal && !joinModal.classList.contains('hidden')) {
+    if (!isModalOpen()) return;
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      closeJoinModal();
+      return;
+    }
+    if (e.key === 'Enter' && typingDone) {
+      e.preventDefault();
       closeJoinModal();
     }
   });

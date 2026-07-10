@@ -4,10 +4,12 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import EventCard from '../../components/EventCard.astro';
 import EventPlaceholderCard from '../../components/EventPlaceholderCard.astro';
-import { EVENT_GRID_SLOTS, getUpcomingEvents } from '../../lib/events';
+import { EVENT_GRID_SLOTS, getAllEvents, getUpcomingEvents } from '../../lib/events';
 
-const events = getUpcomingEvents();
-const placeholderCount = Math.max(0, EVENT_GRID_SLOTS - events.length);
+const upcoming = getUpcomingEvents();
+const past = getAllEvents().filter((event) => event.concluded).reverse();
+const events = [...upcoming, ...past];
+const placeholderCount = Math.max(0, EVENT_GRID_SLOTS - upcoming.length);
 ---
 
 <Layout

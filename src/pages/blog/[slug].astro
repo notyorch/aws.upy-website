@@ -1,0 +1,139 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getAllPosts, getPostBySlug } from '../../lib/blog';
+
+export function getStaticPaths() {
+  return getAllPosts().map((post) => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.params;
+const post = getPostBySlug(slug!);
+
+if (!post) {
+  return Astro.redirect('/blog');
+}
+---
+
+<Layout title={`${post.title} | AWS SBG UPY`} description={post.description}>
+  <Navbar />
+  <main>
+    <article class="px-6 pb-24 pt-16 sm:pt-20">
+      <div class="mx-auto max-w-3xl">
+        <a
+          href="/blog"
+          class="font-mono text-sm font-bold text-cloud transition hover:opacity-80"
+        >
+          ← /blog
+        </a>
+
+        <header class="mt-8">
+          <p class="font-mono text-xs text-fog">
+            <span class="text-mint">$</span> cat {post.slug}.md
+          </p>
+          {
+            post.tags && post.tags.length > 0 && (
+              <p class="mt-4 font-mono text-xs text-grape">
+                {post.tags.map((tag) => `#${tag}`).join(' · ')}
+              </p>
+            )
+          }
+          <h1 class="font-display mt-4 text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">
+            {post.title}
+          </h1>
+          <p class="mt-4 text-lg text-fog">{post.description}</p>
+          <p class="mt-6 font-mono text-xs text-fog">
+            <span class="text-sunset">{post.dateFormatted}</span>
+            {
+              post.author && (
+                <>
+                  <span class="text-paper/30"> · </span>
+                  <span class="text-cloud">{post.author}</span>
+                </>
+              )
+            }
+          </p>
+        </header>
+
+        <div
+          class="brut mt-10 overflow-hidden rounded-2xl bg-ink-deep"
+          style="--brut-line: #f2f6f9; --brut-shadow: #ad5cff;"
+        >
+          {
+            post.thumbnail ? (
+              <img
+                src={post.thumbnail}
+                alt=""
+                class="aspect-[16/9] w-full object-cover"
+              />
+            ) : (
+              <div class="bg-dots flex aspect-[16/9] w-full items-center justify-center">
+                <span class="font-mono text-sm text-fog">// hero 16:9</span>
+              </div>
+            )
+          }
+        </div>
+
+        {
+          post.bodyHtml && (
+            <div
+              class="event-body blog-body mt-10 space-y-4 text-fog"
+              set:html={post.bodyHtml}
+            />
+          )
+        }
+
+        {
+          (post.instagramSlot || post.instagramUrl) && (
+            <section class="mt-14" aria-label="Embed">
+              <div
+                class="brut overflow-hidden rounded-2xl bg-ink"
+                style="--brut-line: #f2f6f9; --brut-shadow: #ff57e9;"
+              >
+                {
+                  post.instagramUrl ? (
+                    <div class="instagram-embed p-4 sm:p-6">
+                      <blockquote
+                        class="instagram-media"
+                        data-instgrm-permalink={post.instagramUrl}
+                        data-instgrm-version="14"
+                        style="background:#161d26; border:0; margin:0 auto; max-width:540px; width:100%;"
+                      >
+                        <a href={post.instagramUrl} target="_blank" rel="noopener noreferrer" class="font-mono text-sm text-bubble">
+                          Ver en Instagram →
+                        </a>
+                      </blockquote>
+                    </div>
+                  ) : (
+                    <div class="bg-dots flex min-h-[420px] flex-col items-center justify-center gap-3 px-6 py-16 text-center">
+                      <p class="font-mono text-xs text-fog">embed · placeholder</p>
+                      <p class="max-w-xs font-mono text-sm text-paper/80">[ post / reel ]</p>
+                    </div>
+                  )
+                }
+              </div>
+            </section>
+          )
+        }
+
+        <div class="mt-12 border-t-2 border-paper/15 pt-8">
+          <a
+            href="/blog"
+            class="brut brut-hover brut-press inline-flex rounded-xl bg-ink px-5 py-3 font-mono text-xs font-bold text-paper"
+            style="--brut-line: #f2f6f9; --brut-shadow: #42b4ff;"
+          >
+            ← todas las entradas
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+{
+  post.instagramUrl && (
+    <script async src="//www.instagram.com/embed.js"></script>
+  )
+}

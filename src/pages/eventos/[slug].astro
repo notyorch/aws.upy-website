@@ -149,7 +149,7 @@ const outlineCta = buttonVariants({ variant: 'outline', size: 'lg' });
         }
 
         {
-          event.note && (
+          event.note && !event.concluded && (
             <p class="mt-10 rounded-xl border border-accent/30 bg-accent/5 p-5 text-sm text-foreground">
               🎟️ {event.note}
             </p>
@@ -157,7 +157,15 @@ const outlineCta = buttonVariants({ variant: 'outline', size: 'lg' });
         }
 
         {
-          event.terms && (
+          event.concluded && (
+            <p class="mt-10 rounded-xl border border-border bg-surface p-5 font-mono text-sm text-muted">
+              <span class="text-fog">$</span> status: <span class="text-accent">concluido</span>
+            </p>
+          )
+        }
+
+        {
+          event.terms && !event.concluded && (
             <p class="mt-6 text-xs text-muted">
               <strong>Términos y condiciones:</strong> {event.terms}
             </p>
@@ -166,7 +174,7 @@ const outlineCta = buttonVariants({ variant: 'outline', size: 'lg' });
 
         <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
           {
-            event.calendarIcs && (
+            event.calendarIcs && !event.concluded && (
               <a href={event.calendarIcs} download class={outlineCta}>
                 Agregar al calendario (.ics)
               </a>
